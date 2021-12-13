@@ -1,0 +1,17 @@
+{
+  "name": "forbidden-desert",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:xBracey/forbidden-desert.git",
+  "license": "MIT",
+  "dependencies": {
+    "css-loader": "^6.5.1",
+    "file-loader": "^6.2.0",
+    "postcss-loader": "^6.2.1",
+    "react": "^17.0.2",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.3",
+    "webpack": "^5.65.0"
+  }
+}
