@@ -22,6 +22,12 @@ export const ForbiddenDesert = {
 
     this.addTokenOnBoard(2, 2, [player_id]);
 
+    // @ts-ignore
+    var JSLink = g_gamethemeurl + "/modules/react.js?version=" + Math.random();
+    var JSElement = document.createElement("script");
+    JSElement.src = JSLink;
+    document.getElementsByTagName("head")[0].appendChild(JSElement);
+
     console.log("Ending game setup");
   },
 

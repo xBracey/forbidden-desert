@@ -44,8 +44,4 @@
     '<div class="token tokencolor_${color}" id="token_${x_y}"></div>';
 </script>
 
-<script type="module">
-  import "https://studio.boardgamearena.com:8084/data/themereleases/current/games/forbiddendesert/999999-9999/react/index.js";
-</script>
-
 {OVERALL_GAME_FOOTER}
