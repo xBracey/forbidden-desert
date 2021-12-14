@@ -8,8 +8,15 @@ import {
 interface IStormTile {}
 
 export const StormTile = ({}: IStormTile) => {
+  const onClick = () => {
+    window.postMessage({
+      action: "tileClicked",
+      source: "react",
+    });
+  };
+
   return (
-    <StormTileContainer>
+    <StormTileContainer onClick={onClick}>
       <StormCircleOuter>
         <StormCircleInner />
       </StormCircleOuter>

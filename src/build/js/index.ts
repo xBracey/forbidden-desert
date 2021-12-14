@@ -20,13 +20,15 @@ export const ForbiddenDesert = {
     // Setup game notifications to handle (see "setupNotifications" method below)
     this.setupNotifications();
 
-    this.addTokenOnBoard(2, 2, [player_id]);
-
     // @ts-ignore
     var JSLink = g_gamethemeurl + "/modules/react.js?version=" + Math.random();
     var JSElement = document.createElement("script");
     JSElement.src = JSLink;
     document.getElementsByTagName("head")[0].appendChild(JSElement);
+
+    window.addEventListener("message", (event) => {
+      console.log(event);
+    });
 
     console.log("Ending game setup");
   },
@@ -77,27 +79,6 @@ export const ForbiddenDesert = {
       switch (stateName) {
       }
     }
-  },
-
-  addTokenOnBoard: function (x, y, player) {
-    dojo.place(
-      // @ts-ignore
-      this.format_block("jstpl_token", {
-        x_y: x + "_" + y,
-        // @ts-ignore
-        color: this.gamedatas.players[player].color,
-      }),
-      "tokens"
-    );
-
-    // @ts-ignore
-    this.placeOnObject(
-      "token_" + x + "_" + y,
-      "overall_player_board_" + player
-    );
-
-    // @ts-ignore
-    this.slideToObject("token_" + x + "_" + y, "square_" + x + "_" + y).play();
   },
 
   setupNotifications: function () {

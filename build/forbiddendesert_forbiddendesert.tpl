@@ -27,18 +27,6 @@
 
 <div id="react"></div>
 
-<div id="board">
-  <!-- BEGIN square -->
-  <div
-    id="square_{X}_{Y}"
-    class="square"
-    style="left: {LEFT}px; top: {TOP}px;"
-  ></div>
-  <!-- END square -->
-
-  <div id="tokens"></div>
-</div>
-
 <script type="text/javascript">
   var jstpl_token =
     '<div class="token tokencolor_${color}" id="token_${x_y}"></div>';
