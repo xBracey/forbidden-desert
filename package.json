@@ -6,12 +6,25 @@
   "license": "MIT",
   "dependencies": {
     "css-loader": "^6.5.1",
+    "dojo": "^1.16.4",
+    "dojo-util": "^1.16.4",
+    "dojo-webpack-plugin": "^3.0.4",
     "file-loader": "^6.2.0",
+    "nodemon": "^2.0.15",
     "postcss-loader": "^6.2.1",
     "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.2.6",
     "typescript": "^4.5.3",
     "webpack": "^5.65.0"
+  },
+  "devDependencies": {
+    "dojo-typings": "^1.11.11",
+    "webpack-cli": "^4.9.1"
+  },
+  "scripts": {
+    "build:ts": "tsc --p ./src/build",
+    "start": "nodemon --watch ./src -e js,ts,tsx,css --exec \"make compile && make compile_game\""
   }
 }

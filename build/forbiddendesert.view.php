@@ -33,52 +33,22 @@
     }    
   	function build_page( $viewArgs )
   	{		
-  	    // Get players & players number
-        $players = $this->game->loadPlayersBasicInfos();
-        $players_nbr = count( $players );
-
-        /*********** Place your code below:  ************/
-
-
-        /*
+        $this->page->begin_block( "forbiddendesert_forbiddendesert", "square" );
         
-        // Examples: set the value of some element defined in your tpl file like this: {MY_VARIABLE_ELEMENT}
-
-        // Display a specific number / string
-        $this->tpl['MY_VARIABLE_ELEMENT'] = $number_to_display;
-
-        // Display a string to be translated in all languages: 
-        $this->tpl['MY_VARIABLE_ELEMENT'] = self::_("A string to be translated");
-
-        // Display some HTML content of your own:
-        $this->tpl['MY_VARIABLE_ELEMENT'] = self::raw( $some_html_code );
-        
-        */
-        
-        /*
-        
-        // Example: display a specific HTML block for each player in this game.
-        // (note: the block is defined in your .tpl file like this:
-        //      <!-- BEGIN myblock --> 
-        //          ... my HTML code ...
-        //      <!-- END myblock --> 
-        
-
-        $this->page->begin_block( "forbiddendesert_forbiddendesert", "myblock" );
-        foreach( $players as $player )
+        $hor_scale = 64;
+        $ver_scale = 64;
+        for( $x=1; $x<=8; $x++ )
         {
-            $this->page->insert_block( "myblock", array( 
-                                                    "PLAYER_NAME" => $player['player_name'],
-                                                    "SOME_VARIABLE" => $some_value
-                                                    ...
-                                                     ) );
+            for( $y=1; $y<=8; $y++ )
+            {
+                $this->page->insert_block( "square", array(
+                    'X' => $x,
+                    'Y' => $y,
+                    'LEFT' => round( ($x-1)* $hor_scale + 16 + $x ),
+                    'TOP' => round( ($y-1)* $ver_scale + 16 + $y )
+                ) );
+            }        
         }
-        
-        */
-
-
-
-        /*********** Do not change anything below this line  ************/
   	}
   }
   

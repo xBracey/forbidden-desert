@@ -25,22 +25,27 @@
     Please REMOVE this comment before publishing your game on BGA
 -->
 
+<div id="react"></div>
 
-This is your game interface. You can edit this HTML in your ".tpl" file.
+<div id="board">
+  <!-- BEGIN square -->
+  <div
+    id="square_{X}_{Y}"
+    class="square"
+    style="left: {LEFT}px; top: {TOP}px;"
+  ></div>
+  <!-- END square -->
 
-Test test 123
-
+  <div id="tokens"></div>
+</div>
 
 <script type="text/javascript">
+  var jstpl_token =
+    '<div class="token tokencolor_${color}" id="token_${x_y}"></div>';
+</script>
 
-// Javascript HTML templates
-
-/*
-// Example:
-var jstpl_some_game_item='<div class="my_game_item" id="my_game_item_${MY_ITEM_ID}"></div>';
-
-*/
-
-</script>  
+<script type="module">
+  import "https://studio.boardgamearena.com:8084/data/themereleases/current/games/forbiddendesert/999999-9999/react/index.js";
+</script>
 
 {OVERALL_GAME_FOOTER}

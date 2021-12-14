@@ -1,0 +1,23 @@
+{
+  "rootDir": ".",
+  "compilerOptions": {
+    "target": "es6",
+    "module": "amd",
+    "sourceMap": true,
+    "outFile": "../../build/forbiddendesert.js",
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "noImplicitThis": true,
+    "lib": ["es5", "es6", "dom", "scripthost"],
+    "strict": false
+  },
+  "files": ["./forbidden-desert-main-file.ts", "./framework.d.ts"],
+  "include": [
+    // "./node_modules/dojo-typings/dojo/1.11/modules.d.ts",
+    // "./node_modules/dojo-typings/dijit/1.11/modules.d.ts",
+    // "./node_modules/dojo-typings/dojo/1.11/loader.d.ts",
+    "./*.js",
+    "./*.ts"
+  ]
+}

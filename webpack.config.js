@@ -3,7 +3,7 @@ const webpack = require("webpack");
 
 module.exports = {
   entry: {
-    index: "./src/index.ts",
+    index: "./src/react/index.ts",
   },
   plugins: [new webpack.DefinePlugin({})],
   module: {
@@ -33,7 +33,7 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js"],
   },
   output: {
-    filename: "[name].js",
+    filename: "modules/react.js",
     path: path.resolve(__dirname, "build"),
   },
   optimization: {},
