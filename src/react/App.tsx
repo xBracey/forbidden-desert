@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import { GlobalStyles } from "./theme";
+import WebFont from "webfontloader";
+
+WebFont.load({ google: { families: ["Roboto:300,400,500"] } });
 
 export const App = () => {
-  const [counter, setCounter] = useState(0);
-
-  const onClick = () => {
-    setCounter(counter + 1);
-  };
-
-  return <div onClick={onClick}>{`Hello World ${counter}`}</div>;
+  return (
+    <div>
+      <GlobalStyles />
+    </div>
+  );
 };

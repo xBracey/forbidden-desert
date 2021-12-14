@@ -15,16 +15,26 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "style-loader": "^3.3.1",
+    "styled-components": "^5.3.3",
     "ts-loader": "^9.2.6",
     "typescript": "^4.5.3",
+    "webfontloader": "^1.6.28",
     "webpack": "^5.65.0"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/builder-webpack5": "^6.3.12",
+    "@storybook/manager-webpack5": "^6.3.12",
+    "@storybook/node-logger": "^6.3.12",
+    "@storybook/react": "^6.3.12",
     "dojo-typings": "^1.11.11",
     "webpack-cli": "^4.9.1"
   },
   "scripts": {
     "build:ts": "tsc --p ./src/build",
-    "start": "nodemon --watch ./src -e js,ts,tsx,css --exec \"make compile && make compile_game\""
+    "start": "nodemon --watch ./src -e js,ts,tsx,css --exec \"make compile && make compile_game\"",
+    "storybook": "start-storybook -p 6006"
   }
 }
