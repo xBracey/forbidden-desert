@@ -9,8 +9,21 @@
 
 -- dbmodel.sql
 
-CREATE TABLE IF NOT EXISTS `board` (
-  `board_x` smallint(5) unsigned NOT NULL,
-  `board_y` smallint(5) unsigned NOT NULL,
-  PRIMARY KEY (`board_x`,`board_y`)
-) ENGINE=InnoDB;
+-- CREATE TABLE IF NOT EXISTS `tile` (
+--   `index` int unsigned NOT NULL,
+--   PRIMARY KEY (`index`,`board_y`)
+-- ) ENGINE=InnoDB;
+
+
+-- CREATE TABLE IF NOT EXISTS `player` (
+--   `player_id` int unsigned NOT NULL,
+--   `player_no` int unsigned NOT NULL,
+--   `player_name` varchar(255) NOT NULL,
+--   `player_color` varchar(255) NOT NULL,
+--   `player_avatar` varchar(255) NOT NULL,
+--   `tile_index` int unsigned NULL,
+--   PRIMARY KEY (`board_x`,`board_y`)
+-- ) ENGINE=InnoDB;
+
+ ALTER TABLE `player` 
+  ADD `player_tile_index` int(10) NOT NULL DEFAULT '0';

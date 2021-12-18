@@ -12,19 +12,30 @@ interface IBoard {
   players: (IPlayer & {
     position: number;
   })[];
+  onTileClick: (index: number) => void;
 }
 
-export const Board = ({ stormPosition, players }: IBoard) => {
+export const Board = ({ stormPosition, players, onTileClick }: IBoard) => {
+  console.log(players);
+
   const tiles = Array(tileNumber)
     .fill(0)
     .map((x, i) => {
-      const player = players.find((p) => p.position === i);
-      const playerComponent = !!player && <Player color={player.color} />;
+      const playersOnTile = players.filter((p) => p.position === i);
+      const playersComponent = playersOnTile.map((player) => (
+        <Player color={player.color} />
+      ));
 
       return stormPosition === i ? (
         <StormTile />
       ) : (
-        <TileBase>{playerComponent}</TileBase>
+        <TileBase
+          onClick={() => {
+            onTileClick(i);
+          }}
+        >
+          {playersComponent}
+        </TileBase>
       );
     });
 

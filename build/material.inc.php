@@ -19,7 +19,6 @@
  *
  */
 
-
 /*
 
 Example:
@@ -31,7 +30,3 @@ $this->card_types = array(
 );
 
 */
-
-
-
-

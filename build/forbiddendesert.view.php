@@ -23,18 +23,16 @@
  * Note: if the HTML of your game interface is always the same, you don't have to place anything here.
  *
  */
-  
-  require_once( APP_BASE_PATH."view/common/game.view.php" );
-  
-  class view_forbiddendesert_forbiddendesert extends game_view
+
+require_once APP_BASE_PATH . "view/common/game.view.php";
+
+class view_forbiddendesert_forbiddendesert extends game_view
+{
+  function getGameName()
   {
-    function getGameName() {
-        return "forbiddendesert";
-    }    
-  	function build_page( $viewArgs )
-  	{		
-
-  	}
+    return "forbiddendesert";
   }
-  
-
+  function build_page($viewArgs)
+  {
+  }
+}

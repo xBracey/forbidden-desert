@@ -4,3 +4,4 @@ compile:
 compile_game:
 	yarn build:ts
 	sed -i -e 's+define("forbidden-desert-main-file",+define(+g' ./build/forbiddendesert.js
+	rm ./build/forbiddendesert.js-e

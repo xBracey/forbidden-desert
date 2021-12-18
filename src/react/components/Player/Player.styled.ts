@@ -5,9 +5,10 @@ interface IPlayerContainer {
 }
 
 export const PlayerContainer = styled.div<IPlayerContainer>`
-  background-color: ${(props) => props.colorHex};
+  background-color: #${(props) => props.colorHex};
   height: 24px;
   width: 24px;
   border-radius: 100%;
   border: 1px solid black;
+  margin: 4px;
 `;

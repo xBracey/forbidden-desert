@@ -27,9 +27,4 @@
 
 <div id="react"></div>
 
-<script type="text/javascript">
-  var jstpl_token =
-    '<div class="token tokencolor_${color}" id="token_${x_y}"></div>';
-</script>
-
 {OVERALL_GAME_FOOTER}

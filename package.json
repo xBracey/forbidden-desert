@@ -5,6 +5,7 @@
   "repository": "git@github.com:xBracey/forbidden-desert.git",
   "license": "MIT",
   "dependencies": {
+    "@prettier/plugin-php": "^0.17.6",
     "css-loader": "^6.5.1",
     "dojo": "^1.16.4",
     "dojo-util": "^1.16.4",
@@ -12,6 +13,7 @@
     "file-loader": "^6.2.0",
     "nodemon": "^2.0.15",
     "postcss-loader": "^6.2.1",
+    "prettier": "^2.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "style-loader": "^3.3.1",
