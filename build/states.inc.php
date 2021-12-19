@@ -64,11 +64,16 @@ $machinestates = [
 
   2 => [
     "name" => "playerTurn",
-    "description" => clienttranslate('${actplayer} must move or pass'),
-    "descriptionmyturn" => clienttranslate('${you} must move or pass'),
+    "description" => clienttranslate(
+      '${actplayer} must move or pass (Turn ${turn_number})'
+    ),
+    "descriptionmyturn" => clienttranslate(
+      '${you} must move or pass (Turn ${turn_number})'
+    ),
     "type" => "activeplayer",
-    "possibleactions" => ["move", "pass"],
-    "transitions" => ["move" => 3, "pass" => 3],
+    "possibleactions" => ["move", "pass", "sameTurn"],
+    "args" => "arg_playerTurn",
+    "transitions" => ["move" => 3, "pass" => 3, "sameTurn" => 2],
   ],
 
   3 => [

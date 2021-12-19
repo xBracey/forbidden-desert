@@ -31,6 +31,7 @@ class forbiddenDesert extends Table
     parent::__construct();
 
     self::initGameStateLabels([
+      "turn_number" => 10,
       //    "my_first_global_variable" => 10,
       //    "my_second_global_variable" => 11,
       //      ...
@@ -58,6 +59,7 @@ class forbiddenDesert extends Table
     // The number of colors defined here must correspond to the maximum number of players allowed for the gams
     $gameinfos = self::getGameinfos();
     $default_colors = ["ff0000", "0000ff", "00ff00", "ffffff"];
+    self::setGameStateInitialValue("turn_number", 1);
 
     // Create players
     // Note: if you added some extra field on "player" table in the database (dbmodel.sql), you can initialize it there.
@@ -169,13 +171,13 @@ class forbiddenDesert extends Table
         "UPDATE player SET player_tile_index='$tile_index' WHERE player_id='$player_id'"
       );
 
-      $this->gamestate->nextState("move");
-
       // Notify all players about the card played
       self::notifyAllPlayers("move", clienttranslate('${player_name} moves'), [
         "player_id" => $player_id,
         "player_name" => self::getActivePlayerName(),
       ]);
+
+      $this->gamestate->nextState("move");
     } else {
       self::notifyPlayer(
         $player_id,
@@ -227,10 +229,22 @@ class forbiddenDesert extends Table
   function st_postTurn()
   {
     // Do some stuff ...
-    $this->activeNextPlayer();
+    $turn_number = self::getGameStateValue("turn_number");
+
+    if ($turn_number > 3) {
+      self::setGameStateValue("turn_number", 1);
+      $this->activeNextPlayer();
+    } else {
+      self::setGameStateValue("turn_number", $turn_number + 1);
+    }
 
     // (very often) go to another gamestate
     $this->gamestate->nextState("next");
+  }
+
+  function arg_playerTurn()
+  {
+    return ["turn_number" => self::getGameStateValue("turn_number")];
   }
 
   function arg_postTurn()
