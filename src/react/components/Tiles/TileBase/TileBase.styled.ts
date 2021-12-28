@@ -10,4 +10,5 @@ export const TileBaseContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  position: relative;
 `;

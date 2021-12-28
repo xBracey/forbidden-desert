@@ -7,4 +7,5 @@
 
 export interface IPlayer {
   color: string;
+  position: number;
 }
