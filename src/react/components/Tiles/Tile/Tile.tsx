@@ -2,23 +2,25 @@ import React from "react";
 import { Player } from "../../Player";
 import { StormTile } from "../StormTile";
 import { TileBase } from "../TileBase";
-import { ITile } from "./types";
+import { PlayersContainer } from "./Tile.styled";
+import { ITile, TileState } from "./types";
 
 export const Tile = ({
   players,
   sandLevel,
-  waterLevel,
   onClick,
-  isStorm,
   isMoveable,
+  tileState,
 }: ITile) => {
-  if (isStorm) return <StormTile />;
+  if (tileState === TileState.STORM) return <StormTile />;
 
   return (
     <TileBase onClick={onClick} sandLevel={sandLevel}>
-      {players.map((p) => (
-        <Player {...p} />
-      ))}
+      <PlayersContainer>
+        {players.map((p) => (
+          <Player {...p} />
+        ))}
+      </PlayersContainer>
     </TileBase>
   );
 };

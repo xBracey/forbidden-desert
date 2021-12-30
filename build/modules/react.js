@@ -206,14 +206,25 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./src/react/App.tsx":
-/*!***************************!*\
-  !*** ./src/react/App.tsx ***!
-  \***************************/
+/***/ "./src/react/app/hooks/useMessage.ts":
+/*!*******************************************!*\
+  !*** ./src/react/app/hooks/useMessage.ts ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.useMessage = void 0;\nconst react_1 = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nconst useMessage = (setPlayers, setTiles) => {\n    (0, react_1.useEffect)(() => {\n        window.postMessage({\n            action: \"handshakeInit\",\n        });\n        const listener = (event) => {\n            const { action, data } = event.data;\n            console.log(data);\n            if (action === \"postTurn\" || action === \"handshakeComplete\") {\n                setPlayers(Object.values(data.players).map((p) => ({\n                    color: p.color,\n                    position: parseInt(p.player_tile_index),\n                })));\n                setTiles(Object.values(data.tiles).map((t) => ({\n                    players: [],\n                    sandLevel: t.sand_level,\n                    onClick: () => { },\n                    isMoveable: false,\n                    tileState: t.tile_state,\n                })));\n            }\n        };\n        window.addEventListener(\"message\", listener);\n        return () => {\n            window.removeEventListener(\"message\", listener);\n        };\n    }, []);\n};\nexports.useMessage = useMessage;\n\n\n//# sourceURL=webpack://forbidden-desert/./src/react/app/hooks/useMessage.ts?");
+
+/***/ }),
+
+/***/ "./src/react/app/index.tsx":
+/*!*********************************!*\
+  !*** ./src/react/app/index.tsx ***!
+  \*********************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\n    if (k2 === undefined) k2 = k;\n    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });\n}) : (function(o, m, k, k2) {\n    if (k2 === undefined) k2 = k;\n    o[k2] = m[k];\n}));\nvar __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {\n    Object.defineProperty(o, \"default\", { enumerable: true, value: v });\n}) : function(o, v) {\n    o[\"default\"] = v;\n});\nvar __importStar = (this && this.__importStar) || function (mod) {\n    if (mod && mod.__esModule) return mod;\n    var result = {};\n    if (mod != null) for (var k in mod) if (k !== \"default\" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);\n    __setModuleDefault(result, mod);\n    return result;\n};\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.App = void 0;\nconst react_1 = __importStar(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\nconst theme_1 = __webpack_require__(/*! ./theme */ \"./src/react/theme/index.ts\");\nconst webfontloader_1 = __importDefault(__webpack_require__(/*! webfontloader */ \"./node_modules/webfontloader/webfontloader.js\"));\nconst Board_1 = __webpack_require__(/*! ./components/Board */ \"./src/react/components/Board/index.ts\");\nwebfontloader_1.default.load({ google: { families: [\"Roboto:300,400,500\"] } });\nconst App = () => {\n    const [players, setPlayers] = (0, react_1.useState)([]);\n    const onTileClick = (index) => {\n        window.postMessage({\n            action: \"tileClicked\",\n            data: { index },\n        });\n    };\n    (0, react_1.useEffect)(() => {\n        window.postMessage({\n            action: \"handshakeInit\",\n        });\n        const listener = (event) => {\n            const { action, data } = event.data;\n            console.log(action, data);\n            if (action === \"postTurn\") {\n                setPlayers(Object.values(data.args).map((p) => ({\n                    color: p.player_color,\n                    position: parseInt(p.player_tile_index),\n                })));\n            }\n            else if (action === \"handshakeComplete\") {\n                console.log(data.players);\n                setPlayers(Object.values(data.players).map((p) => ({\n                    color: p.color,\n                    position: parseInt(p.player_tile_index),\n                })));\n            }\n        };\n        window.addEventListener(\"message\", listener);\n        return () => {\n            window.removeEventListener(\"message\", listener);\n        };\n    }, []);\n    return (react_1.default.createElement(\"div\", null,\n        react_1.default.createElement(Board_1.Board, { stormPosition: 12, players: players, onTileClick: onTileClick }),\n        react_1.default.createElement(theme_1.GlobalStyles, null)));\n};\nexports.App = App;\n\n\n//# sourceURL=webpack://forbidden-desert/./src/react/App.tsx?");
+eval("\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\n    if (k2 === undefined) k2 = k;\n    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });\n}) : (function(o, m, k, k2) {\n    if (k2 === undefined) k2 = k;\n    o[k2] = m[k];\n}));\nvar __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {\n    Object.defineProperty(o, \"default\", { enumerable: true, value: v });\n}) : function(o, v) {\n    o[\"default\"] = v;\n});\nvar __importStar = (this && this.__importStar) || function (mod) {\n    if (mod && mod.__esModule) return mod;\n    var result = {};\n    if (mod != null) for (var k in mod) if (k !== \"default\" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);\n    __setModuleDefault(result, mod);\n    return result;\n};\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.App = void 0;\nconst react_1 = __importStar(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\nconst theme_1 = __webpack_require__(/*! ../theme */ \"./src/react/theme/index.ts\");\nconst webfontloader_1 = __importDefault(__webpack_require__(/*! webfontloader */ \"./node_modules/webfontloader/webfontloader.js\"));\nconst Board_1 = __webpack_require__(/*! ../components/Board */ \"./src/react/components/Board/index.ts\");\nconst useMessage_1 = __webpack_require__(/*! ./hooks/useMessage */ \"./src/react/app/hooks/useMessage.ts\");\nwebfontloader_1.default.load({ google: { families: [\"Roboto:300,400,500\"] } });\nconst App = () => {\n    const [players, setPlayers] = (0, react_1.useState)([]);\n    const [tiles, setTiles] = (0, react_1.useState)([]);\n    const onTileClick = (index) => {\n        window.postMessage({\n            action: \"tileClicked\",\n            data: { index },\n        });\n    };\n    (0, useMessage_1.useMessage)(setPlayers, setTiles);\n    return (react_1.default.createElement(\"div\", null,\n        react_1.default.createElement(Board_1.Board, { tiles: tiles, onTileClick: onTileClick, players: players }),\n        react_1.default.createElement(theme_1.GlobalStyles, null)));\n};\nexports.App = App;\n\n\n//# sourceURL=webpack://forbidden-desert/./src/react/app/index.tsx?");
 
 /***/ }),
 
@@ -235,7 +246,7 @@ eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.Board = void 0;\nconst react_1 = __importDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\nconst Player_1 = __webpack_require__(/*! ../Player */ \"./src/react/components/Player/index.ts\");\nconst StormTile_1 = __webpack_require__(/*! ../Tiles/StormTile */ \"./src/react/components/Tiles/StormTile/index.ts\");\nconst TileBase_1 = __webpack_require__(/*! ../Tiles/TileBase */ \"./src/react/components/Tiles/TileBase/index.ts\");\nconst Board_styled_1 = __webpack_require__(/*! ./Board.styled */ \"./src/react/components/Board/Board.styled.ts\");\nconst tileNumber = 25;\nconst Board = ({ stormPosition, players, onTileClick }) => {\n    console.log(players);\n    const tiles = Array(tileNumber)\n        .fill(0)\n        .map((x, i) => {\n        const playersOnTile = players.filter((p) => p.position === i);\n        const playersComponent = playersOnTile.map((player) => (react_1.default.createElement(Player_1.Player, { color: player.color })));\n        return stormPosition === i ? (react_1.default.createElement(StormTile_1.StormTile, null)) : (react_1.default.createElement(TileBase_1.TileBase, { onClick: () => {\n                onTileClick(i);\n            } }, playersComponent));\n    });\n    return react_1.default.createElement(Board_styled_1.BoardContainer, null, tiles);\n};\nexports.Board = Board;\n\n\n//# sourceURL=webpack://forbidden-desert/./src/react/components/Board/Board.tsx?");
+eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.Board = void 0;\nconst react_1 = __importDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\nconst Tile_1 = __webpack_require__(/*! ../Tiles/Tile */ \"./src/react/components/Tiles/Tile/index.ts\");\nconst Board_styled_1 = __webpack_require__(/*! ./Board.styled */ \"./src/react/components/Board/Board.styled.ts\");\nconst Board = ({ onTileClick, tiles, players }) => {\n    const tilesComponent = tiles.map((tile, i) => {\n        const tilePlayers = players.filter((p) => p.position === i);\n        return (react_1.default.createElement(Tile_1.Tile, Object.assign({}, tile, { onClick: () => onTileClick(i), players: tilePlayers })));\n    });\n    return react_1.default.createElement(Board_styled_1.BoardContainer, null, tilesComponent);\n};\nexports.Board = Board;\n\n\n//# sourceURL=webpack://forbidden-desert/./src/react/components/Board/Board.tsx?");
 
 /***/ }),
 
@@ -283,6 +294,39 @@ eval("\nvar __createBinding = (this && this.__createBinding) || (Object.create ?
 
 /***/ }),
 
+/***/ "./src/react/components/Tiles/Sand/Sand.styled.ts":
+/*!********************************************************!*\
+  !*** ./src/react/components/Tiles/Sand/Sand.styled.ts ***!
+  \********************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.SandLevel = exports.SandBackground = exports.SandContainer = void 0;\nconst styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ \"./node_modules/styled-components/dist/styled-components.browser.esm.js\"));\nconst SandColor = (props) => (props.level > 1 ? \"#d48a00\" : \"#c1c452\");\nexports.SandContainer = styled_components_1.default.div `\n  position: absolute;\n  height: 50px;\n  width: 50px;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n`;\nexports.SandBackground = styled_components_1.default.div `\n  position: absolute;\n  height: 40px;\n  width: 40px;\n  transform: translate(-50%, -50%) rotate(45deg);\n  background-color: ${SandColor};\n  left: 50%;\n  top: 50%;\n  border: 1px solid black;\n`;\nexports.SandLevel = styled_components_1.default.div `\n  position: absolute;\n  height: 20px;\n  width: 20px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border: 1px solid black;\n  border-radius: 16px;\n  top: -10px;\n  left: 50%;\n  transform: translate(-50%, 0%);\n  font-size: 12px;\n  background-color: ${SandColor};\n`;\n\n\n//# sourceURL=webpack://forbidden-desert/./src/react/components/Tiles/Sand/Sand.styled.ts?");
+
+/***/ }),
+
+/***/ "./src/react/components/Tiles/Sand/Sand.tsx":
+/*!**************************************************!*\
+  !*** ./src/react/components/Tiles/Sand/Sand.tsx ***!
+  \**************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.Sand = void 0;\nconst react_1 = __importDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\nconst Sand_styled_1 = __webpack_require__(/*! ./Sand.styled */ \"./src/react/components/Tiles/Sand/Sand.styled.ts\");\nconst Sand = ({ level }) => {\n    if (level === 0)\n        return null;\n    return (react_1.default.createElement(Sand_styled_1.SandContainer, null,\n        react_1.default.createElement(Sand_styled_1.SandBackground, { level: level }),\n        react_1.default.createElement(Sand_styled_1.SandLevel, { level: level }, level)));\n};\nexports.Sand = Sand;\n\n\n//# sourceURL=webpack://forbidden-desert/./src/react/components/Tiles/Sand/Sand.tsx?");
+
+/***/ }),
+
+/***/ "./src/react/components/Tiles/Sand/index.ts":
+/*!**************************************************!*\
+  !*** ./src/react/components/Tiles/Sand/index.ts ***!
+  \**************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\n    if (k2 === undefined) k2 = k;\n    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });\n}) : (function(o, m, k, k2) {\n    if (k2 === undefined) k2 = k;\n    o[k2] = m[k];\n}));\nvar __exportStar = (this && this.__exportStar) || function(m, exports) {\n    for (var p in m) if (p !== \"default\" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n__exportStar(__webpack_require__(/*! ./Sand */ \"./src/react/components/Tiles/Sand/Sand.tsx\"), exports);\n\n\n//# sourceURL=webpack://forbidden-desert/./src/react/components/Tiles/Sand/index.ts?");
+
+/***/ }),
+
 /***/ "./src/react/components/Tiles/StormTile/StormTile.styled.ts":
 /*!******************************************************************!*\
   !*** ./src/react/components/Tiles/StormTile/StormTile.styled.ts ***!
@@ -316,6 +360,50 @@ eval("\nvar __createBinding = (this && this.__createBinding) || (Object.create ?
 
 /***/ }),
 
+/***/ "./src/react/components/Tiles/Tile/Tile.styled.ts":
+/*!********************************************************!*\
+  !*** ./src/react/components/Tiles/Tile/Tile.styled.ts ***!
+  \********************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.PlayersContainer = void 0;\nconst styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ \"./node_modules/styled-components/dist/styled-components.browser.esm.js\"));\nexports.PlayersContainer = styled_components_1.default.div `\n  height: 100%;\n  width: 100%;\n  z-index: 100;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  position: absolute;\n`;\n\n\n//# sourceURL=webpack://forbidden-desert/./src/react/components/Tiles/Tile/Tile.styled.ts?");
+
+/***/ }),
+
+/***/ "./src/react/components/Tiles/Tile/Tile.tsx":
+/*!**************************************************!*\
+  !*** ./src/react/components/Tiles/Tile/Tile.tsx ***!
+  \**************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.Tile = void 0;\nconst react_1 = __importDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\nconst Player_1 = __webpack_require__(/*! ../../Player */ \"./src/react/components/Player/index.ts\");\nconst StormTile_1 = __webpack_require__(/*! ../StormTile */ \"./src/react/components/Tiles/StormTile/index.ts\");\nconst TileBase_1 = __webpack_require__(/*! ../TileBase */ \"./src/react/components/Tiles/TileBase/index.ts\");\nconst Tile_styled_1 = __webpack_require__(/*! ./Tile.styled */ \"./src/react/components/Tiles/Tile/Tile.styled.ts\");\nconst types_1 = __webpack_require__(/*! ./types */ \"./src/react/components/Tiles/Tile/types.ts\");\nconst Tile = ({ players, sandLevel, onClick, isMoveable, tileState, }) => {\n    if (tileState === types_1.TileState.STORM)\n        return react_1.default.createElement(StormTile_1.StormTile, null);\n    return (react_1.default.createElement(TileBase_1.TileBase, { onClick: onClick, sandLevel: sandLevel },\n        react_1.default.createElement(Tile_styled_1.PlayersContainer, null, players.map((p) => (react_1.default.createElement(Player_1.Player, Object.assign({}, p)))))));\n};\nexports.Tile = Tile;\n\n\n//# sourceURL=webpack://forbidden-desert/./src/react/components/Tiles/Tile/Tile.tsx?");
+
+/***/ }),
+
+/***/ "./src/react/components/Tiles/Tile/index.ts":
+/*!**************************************************!*\
+  !*** ./src/react/components/Tiles/Tile/index.ts ***!
+  \**************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\n    if (k2 === undefined) k2 = k;\n    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });\n}) : (function(o, m, k, k2) {\n    if (k2 === undefined) k2 = k;\n    o[k2] = m[k];\n}));\nvar __exportStar = (this && this.__exportStar) || function(m, exports) {\n    for (var p in m) if (p !== \"default\" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n__exportStar(__webpack_require__(/*! ./Tile */ \"./src/react/components/Tiles/Tile/Tile.tsx\"), exports);\n\n\n//# sourceURL=webpack://forbidden-desert/./src/react/components/Tiles/Tile/index.ts?");
+
+/***/ }),
+
+/***/ "./src/react/components/Tiles/Tile/types.ts":
+/*!**************************************************!*\
+  !*** ./src/react/components/Tiles/Tile/types.ts ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.TileState = void 0;\nvar TileState;\n(function (TileState) {\n    TileState[\"STORM\"] = \"storm\";\n    TileState[\"UNTURNED\"] = \"unturned\";\n    TileState[\"WATER\"] = \"water\";\n    TileState[\"WELL\"] = \"well\";\n    TileState[\"MIRAGE\"] = \"mirage\";\n    TileState[\"TUNNEL\"] = \"tunnel\";\n})(TileState = exports.TileState || (exports.TileState = {}));\n\n\n//# sourceURL=webpack://forbidden-desert/./src/react/components/Tiles/Tile/types.ts?");
+
+/***/ }),
+
 /***/ "./src/react/components/Tiles/TileBase/TileBase.styled.ts":
 /*!****************************************************************!*\
   !*** ./src/react/components/Tiles/TileBase/TileBase.styled.ts ***!
@@ -323,7 +411,7 @@ eval("\nvar __createBinding = (this && this.__createBinding) || (Object.create ?
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.TileBaseContainer = void 0;\nconst styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ \"./node_modules/styled-components/dist/styled-components.browser.esm.js\"));\nexports.TileBaseContainer = styled_components_1.default.div `\n  height: 76px;\n  width: 76px;\n  background-color: grey;\n  border: 2px solid black;\n  margin: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n`;\n\n\n//# sourceURL=webpack://forbidden-desert/./src/react/components/Tiles/TileBase/TileBase.styled.ts?");
+eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.TileBaseContainer = void 0;\nconst styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ \"./node_modules/styled-components/dist/styled-components.browser.esm.js\"));\nexports.TileBaseContainer = styled_components_1.default.div `\n  height: 76px;\n  width: 76px;\n  background-color: grey;\n  border: 2px solid black;\n  margin: 10px;\n  position: relative;\n`;\n\n\n//# sourceURL=webpack://forbidden-desert/./src/react/components/Tiles/TileBase/TileBase.styled.ts?");
 
 /***/ }),
 
@@ -334,7 +422,7 @@ eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.TileBase = void 0;\nconst react_1 = __importDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\nconst TileBase_styled_1 = __webpack_require__(/*! ./TileBase.styled */ \"./src/react/components/Tiles/TileBase/TileBase.styled.ts\");\nconst TileBase = ({ children, onClick }) => {\n    return react_1.default.createElement(TileBase_styled_1.TileBaseContainer, { onClick: onClick }, children);\n};\nexports.TileBase = TileBase;\n\n\n//# sourceURL=webpack://forbidden-desert/./src/react/components/Tiles/TileBase/TileBase.tsx?");
+eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.TileBase = void 0;\nconst react_1 = __importDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\nconst Sand_1 = __webpack_require__(/*! ../Sand */ \"./src/react/components/Tiles/Sand/index.ts\");\nconst TileBase_styled_1 = __webpack_require__(/*! ./TileBase.styled */ \"./src/react/components/Tiles/TileBase/TileBase.styled.ts\");\nconst TileBase = ({ children, onClick, sandLevel }) => {\n    return (react_1.default.createElement(TileBase_styled_1.TileBaseContainer, { onClick: onClick },\n        children,\n        react_1.default.createElement(Sand_1.Sand, { level: sandLevel })));\n};\nexports.TileBase = TileBase;\n\n\n//# sourceURL=webpack://forbidden-desert/./src/react/components/Tiles/TileBase/TileBase.tsx?");
 
 /***/ }),
 
@@ -356,7 +444,7 @@ eval("\nvar __createBinding = (this && this.__createBinding) || (Object.create ?
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.helloWorld = void 0;\nconst react_1 = __importDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\nconst react_dom_1 = __importDefault(__webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\"));\nconst App_1 = __webpack_require__(/*! ./App */ \"./src/react/App.tsx\");\nconst helloWorld = () => {\n    const app = document.querySelector(\"#react\");\n    react_dom_1.default.render(react_1.default.createElement(App_1.App, {}), app);\n};\nexports.helloWorld = helloWorld;\n(0, exports.helloWorld)();\n\n\n//# sourceURL=webpack://forbidden-desert/./src/react/index.ts?");
+eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.helloWorld = void 0;\nconst react_1 = __importDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\nconst react_dom_1 = __importDefault(__webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\"));\nconst app_1 = __webpack_require__(/*! ./app */ \"./src/react/app/index.tsx\");\nconst helloWorld = () => {\n    const app = document.querySelector(\"#react\");\n    react_dom_1.default.render(react_1.default.createElement(app_1.App, {}), app);\n};\nexports.helloWorld = helloWorld;\n(0, exports.helloWorld)();\n\n\n//# sourceURL=webpack://forbidden-desert/./src/react/index.ts?");
 
 /***/ }),
 

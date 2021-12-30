@@ -14,6 +14,8 @@ export const useMessage = (
     const listener = (event) => {
       const { action, data } = event.data;
 
+      console.log(data);
+
       if (action === "postTurn" || action === "handshakeComplete") {
         setPlayers(
           Object.values(data.players).map((p: any) => ({
@@ -25,10 +27,9 @@ export const useMessage = (
           Object.values(data.tiles).map((t: any) => ({
             players: [],
             sandLevel: t.sand_level,
-            waterLevel: t.water_level,
             onClick: () => {},
-            isStorm: t.is_storm,
             isMoveable: false,
+            tileState: t.tile_state,
           }))
         );
       }

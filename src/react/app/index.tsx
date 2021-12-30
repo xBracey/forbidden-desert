@@ -23,7 +23,7 @@ export const App = () => {
 
   return (
     <div>
-      <Board tiles={tiles} onTileClick={onTileClick} />
+      <Board tiles={tiles} onTileClick={onTileClick} players={players} />
       <GlobalStyles />
     </div>
   );

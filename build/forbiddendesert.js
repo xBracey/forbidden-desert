@@ -12,12 +12,6 @@ define("js/index", ["require", "exports"], function (require, exports) {
         },
         setup: function (gamedatas) {
             console.log("Starting game setup");
-            console.log(gamedatas);
-            // Setting up player boards
-            for (var player_id in gamedatas.players) {
-                var player = gamedatas.players[player_id];
-                // TODO: Setting up players boards if needed
-            }
             // TODO: Set up your game interface here, according to "gamedatas"
             // Setup game notifications to handle (see "setupNotifications" method below)
             //@ts-ignore
@@ -64,7 +58,7 @@ define("js/index", ["require", "exports"], function (require, exports) {
                     // Make ajax call to get all board positions
                     window.postMessage({
                         action: "postTurn",
-                        data: args,
+                        data: args.args,
                     });
             }
         },

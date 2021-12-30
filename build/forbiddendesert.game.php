@@ -81,6 +81,18 @@ class forbiddenDesert extends Table
     }
     $sql .= implode($values, ",");
     self::DbQuery($sql);
+
+    // Create tiles
+    $sql = "INSERT INTO tile (tile_index, sand_level, tile_state) VALUES ";
+    $values = [];
+
+    for ($i = 0; $i < 25; $i++) {
+      $values[] = "(" . $i . ",0," . "'unturned')";
+    }
+    $sql .= implode($values, ",");
+
+    self::DbQuery($sql);
+
     self::reloadPlayersBasicInfos();
 
     // Activate first player (which is in general a good idea :) )
@@ -98,21 +110,28 @@ class forbiddenDesert extends Table
         _ when the game starts
         _ when a player refreshes the game page (F5)
     */
-  protected function getAllDatas()
+
+  function getPlayerTileData()
   {
     $result = [];
-
-    $current_player_id = self::getCurrentPlayerId(); // !! We must only return informations visible by this player !!
 
     // Get information about players
     // Note: you can retrieve some extra field you added for "player" table in "dbmodel.sql" if you need it.
     $sql =
-      "SELECT player_id id, player_score score, player_tile_index FROM player ";
+      "SELECT player_id id, player_color color, player_tile_index FROM player ";
     $result["players"] = self::getCollectionFromDb($sql);
+
+    $sql = "SELECT tile_index, sand_level, tile_state FROM tile ";
+    $result["tiles"] = self::getCollectionFromDb($sql);
 
     // TODO: Gather all information about current game situation (visible by player $current_player_id).
 
     return $result;
+  }
+
+  protected function getAllDatas()
+  {
+    return $this->getPlayerTileData();
   }
 
   /*
@@ -249,22 +268,12 @@ class forbiddenDesert extends Table
 
   function arg_postTurn()
   {
-    // Get all players
-    $players = self::getCollectionFromDB(
-      "SELECT player_id, player_color, player_tile_index FROM player"
-    );
-
-    return $players;
+    return $this->getPlayerTileData();
   }
 
   function arg_gameSetup()
   {
-    // Get all players
-    $players = self::getCollectionFromDB(
-      "SELECT player_id, player_color, player_tile_index FROM player"
-    );
-
-    return $players;
+    return $this->getPlayerTileData();
   }
 
   //////////////////////////////////////////////////////////////////////////////

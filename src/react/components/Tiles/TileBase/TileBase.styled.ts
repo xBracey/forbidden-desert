@@ -6,9 +6,5 @@ export const TileBaseContainer = styled.div`
   background-color: grey;
   border: 2px solid black;
   margin: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
   position: relative;
 `;

@@ -25,5 +25,12 @@
 --   PRIMARY KEY (`board_x`,`board_y`)
 -- ) ENGINE=InnoDB;
 
- ALTER TABLE `player` 
+ALTER TABLE `player` 
   ADD `player_tile_index` int(10) NOT NULL DEFAULT '0';
+
+CREATE TABLE IF NOT EXISTS `tile` (
+  `tile_index` int(10) unsigned NOT NULL,
+  `sand_level` int(10) unsigned NOT NULL,
+  `tile_state` varchar(255) NOT NULL,
+  PRIMARY KEY (`tile_index`)
+) ENGINE=InnoDB;
